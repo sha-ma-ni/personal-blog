@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Blog</title>
+</head>
+<body>
+<!--вставляем фрагмент header в код страницы-->
+<header th:replace="blocks/header :: header"></header>
+
+<div class="container mt-5">
+    <h1>Blog</h1>
+<!--выводим все записи в шаблон
+    для каждого элемента el из posts-->
+    <!--/*@thymesVar id="posts" type="templates"*/-->
+    <div th:each="el : ${posts}" class="alert alert-info mt-2">
+        <h3 th:text="${el.title}"></h3>
+        <p th:text="${el.anons}"></p>
+         <p><b>Views: </b><span th:text="${el.views}"/></p>
+        <!-- <a th:href="'/blog/' + ${el.id}">Детальнее</a> -->
+         <a th:href="'/blog/' + ${el.id} + '/edit'" class="btn btn-warning">Edit</a>
+         <a th:href="'/blog/' + ${el.id} + '/remove'" class="btn btn-warning">Delete</a>
+
+     </div>
+ </div>
+
+ <!--<p th:text="'Hello, ' + ${name} + '!'" />-->
+<footer th:replace="blocks/footer :: footer"></footer>
+</body>
+
+</html>
